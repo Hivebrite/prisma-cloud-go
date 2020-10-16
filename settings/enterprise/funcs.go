@@ -1,7 +1,7 @@
 package enterprise
 
 import (
-	pc "github.com/Hivebrite/prisma-cloud-go"
+	pc "github.com/hivebrite/prisma-cloud-go"
 )
 
 // Get returns the enterprise settings for your tenant.
