@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	pc "github.com/Hivebrite/prisma-cloud-go"
+	pc "github.com/PaloAltoNetworks/prisma-cloud-go"
 )
 
 // List lists all cloud accounts onboarded onto the Prisma Cloud platform.
