@@ -1,7 +1,7 @@
 package alert
 
 import (
-	pc "github.com/PaloAltoNetworks/prisma-cloud-go"
+	pc "github.com/Hivebrite/prisma-cloud-go"
 )
 
 // List returns a list of alerts that match the constraints specified.

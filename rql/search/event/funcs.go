@@ -3,8 +3,8 @@ package config
 import (
 	"strings"
 
-	pc "github.com/PaloAltoNetworks/prisma-cloud-go"
-	"github.com/PaloAltoNetworks/prisma-cloud-go/rql/history"
+	pc "github.com/Hivebrite/prisma-cloud-go"
+	"github.com/Hivebrite/prisma-cloud-go/rql/history"
 )
 
 func Create(c pc.PrismaCloudClient, query history.Query) error {
