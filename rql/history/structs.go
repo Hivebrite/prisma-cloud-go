@@ -1,7 +1,7 @@
 package history
 
 import (
-	"github.com/paloaltonetworks/prisma-cloud-go/timerange"
+	"github.com/Hivebrite/prisma-cloud-go/timerange"
 )
 
 type NameId struct {

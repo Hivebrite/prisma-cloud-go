@@ -3,8 +3,9 @@ package history
 import (
 	"net/url"
 	"strconv"
+	"strings"
 
-	pc "github.com/paloaltonetworks/prisma-cloud-go"
+	pc "github.com/Hivebrite/prisma-cloud-go"
 )
 
 // List lists saved or recent RQL search queries.
@@ -67,5 +68,23 @@ func Delete(c pc.PrismaCloudClient, id string) error {
 	path = append(path, id)
 
 	_, err := c.Communicate("DELETE", path, nil, nil, nil)
+	return err
+}
+
+// Create adds a new policy.
+func Create(c pc.PrismaCloudClient, query Query) error {
+	var (
+		logMsg strings.Builder
+	)
+
+	logMsg.Grow(30)
+	logMsg.WriteString("(create)")
+	logMsg.WriteString(singular)
+	c.Log(pc.LogAction, logMsg.String())
+
+	path := make([]string, 0, len(Suffix)+1)
+	path = append(path, Suffix...)
+
+	_, err := c.Communicate("POST", path, nil, query, nil)
 	return err
 }

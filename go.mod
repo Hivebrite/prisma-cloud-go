@@ -1,3 +1,3 @@
-module github.com/paloaltonetworks/prisma-cloud-go
+module github.com/Hivebrite/prisma-cloud-go
 
 go 1.13

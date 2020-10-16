@@ -9,8 +9,8 @@ initialize the connection:
 
     import (
         "log"
-        "github.com/paloaltonetworks/prisma-cloud-go"
-        "github.com/paloaltonetworks/prisma-cloud-go/compliance/standard"
+        "github.com/Hivebrite/prisma-cloud-go"
+        "github.com/Hivebrite/prisma-cloud-go/compliance/standard"
     )
 
     func main() {

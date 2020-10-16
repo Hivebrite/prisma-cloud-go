@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	pc "github.com/paloaltonetworks/prisma-cloud-go"
+	pc "github.com/Hivebrite/prisma-cloud-go"
 )
 
 // List returns a list of all compliance requirements sections for the specified compliance requirement ID.
