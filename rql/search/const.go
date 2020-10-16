@@ -1,12 +1,8 @@
 package search
 
 const (
-	configSingular  = "config search"
-	networkSingular = "network search"
-	eventSingular   = "event search"
+	singular = "RQL not saved query"
+	plural   = "RQL not saved queries"
 )
 
-var BaseSuffix = []string{"search"}
-var ConfigSuffix = []string{"config"}
-var NetworkSuffix = []string{}
-var EventSuffix = []string{"event"}
+var Suffix = []string{"search"}

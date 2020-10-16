@@ -1,65 +1,49 @@
 package search
 
 import (
-	_ "net/url"
-	_ "strconv"
+	"strings"
 
 	pc "github.com/paloaltonetworks/prisma-cloud-go"
+	"github.com/paloaltonetworks/prisma-cloud-go/rql/history"
 )
 
-// ConfigSearch performs a config RQL search.
-func ConfigSearch(c pc.PrismaCloudClient, req ConfigRequest) (ConfigResponse, error) {
-	c.Log(pc.LogAction, "(get) performing %s", configSingular)
+// Identify returns the ID for the given account group.
+func Identify(c pc.PrismaCloudClient, query string) (string, error) {
+	c.Log(pc.LogAction, "(get) id for %s: %s", singular, query)
 
-	var resp ConfigResponse
-
-	// Sanity check the time range.
-	if err := req.TimeRange.SetType(); err != nil {
-		return resp, err
+	listing, err := history.List(c, history.Recent, 0)
+	if err != nil {
+		return "", err
 	}
 
-	path := make([]string, 0, len(BaseSuffix)+len(ConfigSuffix))
-	path = append(path, BaseSuffix...)
-	path = append(path, ConfigSuffix...)
+	for _, o := range listing {
+		if o.Model.Query == query {
+			return o.Model.Id, nil
+		}
+	}
 
-	_, err := c.Communicate("POST", path, nil, req, &resp)
-	return resp, err
+	return "", pc.ObjectNotFoundError
 }
 
-// EventSearch performs a config RQL search.
-func EventSearch(c pc.PrismaCloudClient, req EventRequest) (EventResponse, error) {
-	c.Log(pc.LogAction, "(get) performing %s", eventSingular)
+func Create(c pc.PrismaCloudClient, query history.Query) error {
+	var logMsg strings.Builder
+	lastPath := query.SearchType
 
-	var resp EventResponse
+	logMsg.Grow(30)
+	logMsg.WriteString("(create)")
+	logMsg.WriteString(singular)
 
-	// Sanity check the time range.
-	if err := req.TimeRange.SetType(); err != nil {
-		return resp, err
+	c.Log(pc.LogAction, logMsg.String())
+
+	path := make([]string, 0, len(Suffix)+1)
+	path = append(path, Suffix...)
+
+	if lastPath == "audit_event" {
+		lastPath = "event"
 	}
 
-	path := make([]string, 0, len(BaseSuffix)+len(EventSuffix))
-	path = append(path, BaseSuffix...)
-	path = append(path, EventSuffix...)
+	path = append(path, lastPath)
 
-	_, err := c.Communicate("POST", path, nil, req, &resp)
-	return resp, err
-}
-
-// NetworkSearch performs a config RQL search.
-func NetworkSearch(c pc.PrismaCloudClient, req NetworkRequest) (NetworkResponse, error) {
-	c.Log(pc.LogAction, "(get) performing %s", networkSingular)
-
-	var resp NetworkResponse
-
-	// Sanity check the time range.
-	if err := req.TimeRange.SetType(); err != nil {
-		return resp, err
-	}
-
-	path := make([]string, 0, len(BaseSuffix)+len(NetworkSuffix))
-	path = append(path, BaseSuffix...)
-	path = append(path, NetworkSuffix...)
-
-	_, err := c.Communicate("POST", path, nil, req, &resp)
-	return resp, err
+	_, err := c.Communicate("POST", path, nil, query, nil)
+	return err
 }

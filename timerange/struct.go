@@ -7,9 +7,8 @@ import (
 
 // TimeRange is the time range model for Prisma Cloud.
 type TimeRange struct {
-	Type             string      `json:"type"`
-	Value            interface{} `json:"value"`
-	RelativeTimeType string      `json:"relativeTimeType,omitempty"`
+	Type  string      `json:"type"`
+	Value interface{} `json:"value"`
 }
 
 // SetType sets the time range type based on the value specified.
