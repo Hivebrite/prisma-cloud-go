@@ -5,7 +5,7 @@ import (
 	"net/url"
 	"strings"
 
-	pc "github.com/hivebrite/prisma-cloud-go"
+	pc "github.com/paloaltonetworks/prisma-cloud-go"
 )
 
 // Types returns a list of all supported integration types.

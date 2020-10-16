@@ -5,7 +5,7 @@ import (
 	"net/url"
 	"strings"
 
-	pc "github.com/hivebrite/prisma-cloud-go"
+	pc "github.com/paloaltonetworks/prisma-cloud-go"
 )
 
 // List returns a list of available policies, both system default and custom.

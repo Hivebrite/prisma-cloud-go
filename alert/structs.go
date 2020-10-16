@@ -1,7 +1,7 @@
 package alert
 
 import (
-	"github.com/hivebrite/prisma-cloud-go/timerange"
+	"github.com/paloaltonetworks/prisma-cloud-go/timerange"
 )
 
 type Request struct {

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	pc "github.com/hivebrite/prisma-cloud-go"
+	pc "github.com/paloaltonetworks/prisma-cloud-go"
 )
 
 // Identify returns the ID associated with the specified user role name.

@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"strings"
 
-	pc "github.com/hivebrite/prisma-cloud-go"
+	pc "github.com/paloaltonetworks/prisma-cloud-go"
 )
 
 // List lists saved or recent RQL search queries.
