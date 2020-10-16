@@ -1,8 +1,6 @@
 package history
 
-import (
-	"github.com/paloaltonetworks/prisma-cloud-go/timerange"
-)
+import "github.com/paloaltonetworks/prisma-cloud-go/timerange"
 
 type NameId struct {
 	CreatedBy      string `json:"createdBy"`

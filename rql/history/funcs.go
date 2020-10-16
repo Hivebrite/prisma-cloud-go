@@ -3,6 +3,7 @@ package history
 import (
 	"net/url"
 	"strconv"
+	"strings"
 
 	pc "github.com/paloaltonetworks/prisma-cloud-go"
 )
@@ -23,7 +24,7 @@ func List(c pc.PrismaCloudClient, filter string, limit int) ([]NameId, error) {
 	return ans, err
 }
 
-// Identify returns the ID for the given account group.
+// Identify returns the ID for the given RQL Search.
 func Identify(c pc.PrismaCloudClient, name string) (string, error) {
 	c.Log(pc.LogAction, "(get) id for %s: %s", singular, name)
 
@@ -67,5 +68,24 @@ func Delete(c pc.PrismaCloudClient, id string) error {
 	path = append(path, id)
 
 	_, err := c.Communicate("DELETE", path, nil, nil, nil)
+	return err
+}
+
+// Create saves a RQL saved search.
+func Create(c pc.PrismaCloudClient, query Query, id string) error {
+	var (
+		logMsg strings.Builder
+	)
+
+	logMsg.Grow(30)
+	logMsg.WriteString("(create)")
+	logMsg.WriteString(singular)
+	c.Log(pc.LogAction, logMsg.String())
+
+	path := make([]string, 0, len(Suffix)+1)
+	path = append(path, Suffix...)
+	path = append(path, id)
+
+	_, err := c.Communicate("POST", path, nil, query, nil)
 	return err
 }
