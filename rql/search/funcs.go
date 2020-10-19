@@ -9,7 +9,7 @@ import (
 
 // Identify returns the ID for the given account group.
 func Identify(c pc.PrismaCloudClient, query string) (string, error) {
-	c.Log(pc.LogAction, "(get) id for %s: %s", Singular, query)
+	c.Log(pc.LogAction, "(get) id for %s: %s", singular, query)
 
 	listing, err := history.List(c, history.Recent, 0)
 	if err != nil {
