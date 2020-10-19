@@ -24,7 +24,7 @@ func List(c pc.PrismaCloudClient, filter string, limit int) ([]NameId, error) {
 	return ans, err
 }
 
-// Identify returns the ID for the given account group.
+// Identify returns the ID for the given RQL Search.
 func Identify(c pc.PrismaCloudClient, name string) (string, error) {
 	c.Log(pc.LogAction, "(get) id for %s: %s", singular, name)
 
@@ -71,8 +71,8 @@ func Delete(c pc.PrismaCloudClient, id string) error {
 	return err
 }
 
-// Create adds a new policy.
-func Create(c pc.PrismaCloudClient, query Query) error {
+// Create saves a RQL saved search.
+func Create(c pc.PrismaCloudClient, query PostQuery, id string) error {
 	var (
 		logMsg strings.Builder
 	)
@@ -84,6 +84,7 @@ func Create(c pc.PrismaCloudClient, query Query) error {
 
 	path := make([]string, 0, len(Suffix)+1)
 	path = append(path, Suffix...)
+	path = append(path, id)
 
 	_, err := c.Communicate("POST", path, nil, query, nil)
 	return err
