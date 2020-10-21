@@ -72,7 +72,7 @@ func Delete(c pc.PrismaCloudClient, id string) error {
 }
 
 // Create saves a RQL saved search.
-func Create(c pc.PrismaCloudClient, query PostQuery, id string) error {
+func Create(c pc.PrismaCloudClient, query Query, id string) error {
 	var (
 		logMsg strings.Builder
 	)
