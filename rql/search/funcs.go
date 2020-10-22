@@ -26,9 +26,7 @@ func Identify(c pc.PrismaCloudClient, query string) (string, error) {
 }
 
 func Create(c pc.PrismaCloudClient, query history.Query) error {
-	var (
-		logMsg strings.Builder
-	)
+	var logMsg strings.Builder
 	lastPath := query.SearchType
 
 	logMsg.Grow(30)
